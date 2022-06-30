@@ -11,4 +11,34 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+  <servlet>
+    <description></description>
+    <display-name>EstudianteController</display-name>
+    <servlet-name>EstudianteController</servlet-name>
+    <servlet-class>javaPeopleController.EstudianteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EstudianteController</servlet-name>
+    <url-pattern>/EstudianteController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AsignaturaController</display-name>
+    <servlet-name>AsignaturaController</servlet-name>
+    <servlet-class>javaPeopleController.AsignaturaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AsignaturaController</servlet-name>
+    <url-pattern>/AsignaturaController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CalificacionController</display-name>
+    <servlet-name>CalificacionController</servlet-name>
+    <servlet-class>javaPeopleController.CalificacionController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalificacionController</servlet-name>
+    <url-pattern>/CalificacionController</url-pattern>
+  </servlet-mapping>
 </web-app>

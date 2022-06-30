@@ -7,7 +7,7 @@
 <title>Index</title>
 </head>
 <body>
-	<%@ include file="WEB-INF/vistas/componentes/navbar.jsp" %>
+	<%@ include file="/WEB-INF/vistas/componentes/navbar.jsp" %>
 	<h1>Java people inicio</h1>
 	<div class="container">
 		<div class="row">
