@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +14,35 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">Id</th>
+					      <th scope="col">Nombre</th>
+					      <th scope="col">Apellido</th>
+					      <th scope="col">Run</th>
+					      <th scope="col">Genero</th>
+					      <th scope="col">Fono</th>
+					      <th scope="col">Consultar</th>
+					      <th scope="col">Agregar</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<c:forEach var="estudiante" items="${estudiantes}">
+						    <tr>
+						      <td><c:out value="${estudiante.id}"/></td>
+						      <td><c:out value="${estudiante.nombre}"/></td>
+						      <td><c:out value="${estudiante.apellido}"/></td>
+						      <td><c:out value="${estudiante.run}"/></td>
+						      <td><c:out value="${estudiante.genero}"/></td>
+						      <td><c:out value="${estudiante.fono}"/></td>
+						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/orden?seleccion=editar&amp;id=${estudiante.id}">Consultar</a></td>
+						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/orden?seleccion=editar&amp;id=${estudiante.id}">Agregar Nota</a></td>
+						      <td></td>
+						    </tr>
+					    </c:forEach>
+					  </tbody>
+					</table>
 				</div>
 			</div>
 		</div>

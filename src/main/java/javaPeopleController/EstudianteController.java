@@ -11,6 +11,7 @@ import javaPeopleModel.Estudiante;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.naming.NamingException;
 
@@ -30,6 +31,25 @@ public class EstudianteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String seleccion = request.getParameter("seleccion");
 		String vistaJSP = "";
+		switch(seleccion) {
+		case "listar":
+			try {
+				List<Estudiante> estudiantes;
+				estudiantes = estudianteDAO.findAllEstudiantes();
+				request.setAttribute("estudiantes", estudiantes);
+				vistaJSP = "/WEB-INF/vistas/estudiante/listaEstudiantes.jsp";
+				request
+					.getRequestDispatcher(vistaJSP)
+					.forward(request, response)
+					;
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+			break;
+			default:
+				response.sendError(404);
+		}
 	}
 	
 	
@@ -66,7 +86,6 @@ public class EstudianteController extends HttpServlet {
 				e.printStackTrace();
 				response.sendError(500);
 			}
-			response.sendRedirect("/java-people/");
 		}else {
 			Estudiante actualizarEstudiante = new Estudiante(id, nombre, apellido, run, genero, fono);
 			try {
