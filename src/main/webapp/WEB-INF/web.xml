@@ -19,7 +19,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>EstudianteController</servlet-name>
-    <url-pattern>/EstudianteController</url-pattern>
+    <url-pattern>/estudiante</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -29,7 +29,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AsignaturaController</servlet-name>
-    <url-pattern>/AsignaturaController</url-pattern>
+    <url-pattern>/asignatura</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -39,6 +39,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CalificacionController</servlet-name>
-    <url-pattern>/CalificacionController</url-pattern>
+    <url-pattern>/calificacion</url-pattern>
   </servlet-mapping>
 </web-app>

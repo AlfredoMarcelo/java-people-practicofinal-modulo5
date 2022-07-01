@@ -6,6 +6,7 @@ public class Estudiante {
 	private String nombre;
 	private String apellido;
 	private String run;
+	private String genero;
 	private String fono;
 	
 	
@@ -13,21 +14,23 @@ public class Estudiante {
 	}
 
 
-	public Estudiante(String nombre, String apellido, String run, String fono) {
+	public Estudiante(String nombre, String apellido, String run, String genero, String fono) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.run = run;
+		this.genero = genero;
 		this.fono = fono;
 	}
 
 
-	public Estudiante(int id, String nombre, String apellido, String run, String fono) {
+	public Estudiante(int id, String nombre, String apellido, String run, String genero, String fono) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.run = run;
+		this.genero = genero;
 		this.fono = fono;
 	}
 
@@ -69,6 +72,15 @@ public class Estudiante {
 
 	public void setRun(String run) {
 		this.run = run;
+	}
+	
+	public String getGenero() {
+		return genero;
+	}
+	
+	
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 

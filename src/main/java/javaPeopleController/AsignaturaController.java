@@ -5,36 +5,74 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javaPeopleDao.AsignaturaDAO;
+import javaPeopleDao.AsignaturaDAOImp;
+import javaPeopleModel.Asignatura;
+import javaPeopleModel.Estudiante;
 
-/**
- * Servlet implementation class AsignaturaController
- */
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.naming.NamingException;
+
+
 public class AsignaturaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private AsignaturaDAO asignaturaDAO;
+    
+	
     public AsignaturaController() {
         super();
-        // TODO Auto-generated constructor stub
     }
+    
+    
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	@Override
+	public void init() throws ServletException {
 		// TODO Auto-generated method stub
+		super.init();
+		this.asignaturaDAO = new AsignaturaDAOImp();
+	}
+
+
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int id = 0;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		}catch (NumberFormatException e) {
+			System.err.println("todo ok");
+		}
+
+		String nombre = request.getParameter("nombre");
+		
+		if(id == 0) {
+			Asignatura asignatura = new Asignatura(nombre);
+			try {
+				asignaturaDAO.crearAsignatura(asignatura);
+				response.sendRedirect("/java-people/");
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+		}else {
+			Asignatura actualizarAsignatura = new Asignatura(id, nombre);
+			try {
+				asignaturaDAO.editarAsignatura(actualizarAsignatura);
+				response.sendRedirect("/java-people/");
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+		}
 	}
 
 }

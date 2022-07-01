@@ -10,50 +10,46 @@
 	<%@ include file="/WEB-INF/vistas/componentes/navbar.jsp" %>
 	<h1>Java people inicio</h1>
 	<div class="container">
-		<div class="row">
+		<div class="row mt-5">
 			<div class="col">
-				<form class="row g-3">
-				  <div class="col-md-6">
-				    <label for="inputEmail4" class="form-label">Email</label>
-				    <input type="email" class="form-control" id="inputEmail4">
-				  </div>
-				  <div class="col-md-6">
-				    <label for="inputPassword4" class="form-label">Password</label>
-				    <input type="password" class="form-control" id="inputPassword4">
-				  </div>
-				  <div class="col-12">
-				    <label for="inputAddress" class="form-label">Address</label>
-				    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-				  </div>
-				  <div class="col-12">
-				    <label for="inputAddress2" class="form-label">Address 2</label>
-				    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-				  </div>
-				  <div class="col-md-6">
-				    <label for="inputCity" class="form-label">City</label>
-				    <input type="text" class="form-control" id="inputCity">
+				<form class="row g-3" action="/java-people/estudiante" method="POST">
+					<input type="hidden" name="id">
+				  <div class="col-md-4">
+				    <label for="nombre" class="form-label">Nombre: </label>
+				    <input type="text" class="form-control" id="nombre" name="nombre">
 				  </div>
 				  <div class="col-md-4">
-				    <label for="inputState" class="form-label">State</label>
-				    <select id="inputState" class="form-select">
-				      <option selected>Choose...</option>
-				      <option>...</option>
+				    <label for="apellido" class="form-label">Apellido: </label>
+				    <input type="text" class="form-control" id="apellido" name="apellido">
+				  </div>
+				  <div class="col-md-4">
+				    <label for="run" class="form-label">Run: </label>
+				    <input type="text" class="form-control" id="run" name="run">
+				  </div>
+				  <div class="col-md-4">
+				    <label for="genero" class="form-label">Genero: </label>
+				    <select id="genero" class="form-select" name="genero">
+				      <option selected>Selecciona..</option>
+				      <option value="Masculino">Masculino</option>
+				      <option value="Femenino">Femenino</option>
 				    </select>
 				  </div>
-				  <div class="col-md-2">
-				    <label for="inputZip" class="form-label">Zip</label>
-				    <input type="text" class="form-control" id="inputZip">
+				  <div class="col-md-4">
+				    <label for="fono" class="form-label">Fono: </label>
+				    <input type="text" class="form-control" id="fono" name="fono">
 				  </div>
 				  <div class="col-12">
-				    <div class="form-check">
-				      <input class="form-check-input" type="checkbox" id="gridCheck">
-				      <label class="form-check-label" for="gridCheck">
-				        Check me out
-				      </label>
-				    </div>
+				    <button type="submit" class="btn btn-primary">Agregar</button>
+				  </div>
+				</form>
+				<form class="row g-3" action="/java-people/asignatura" method="POST">
+					<input type="hidden" name="id">
+				  <div class="col-md-4">
+				    <label for="nombre" class="form-label">Nombre: </label>
+				    <input type="text" class="form-control" id="nombre" name="nombre">
 				  </div>
 				  <div class="col-12">
-				    <button type="submit" class="btn btn-primary">Sign in</button>
+				    <button type="submit" class="btn btn-primary">Agregar</button>
 				  </div>
 				</form>
 			</div>
