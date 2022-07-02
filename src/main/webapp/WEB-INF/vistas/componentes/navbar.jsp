@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Java People</a>
+    <a class="navbar-brand" href="/java-people/">Java People</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,7 +14,7 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/java-people/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Registrarse</a>

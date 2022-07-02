@@ -12,8 +12,8 @@
 <body>
 	<%@ include file="/WEB-INF/vistas/componentes/navbar.jsp" %>
 		<div class="container">
-			<div class="row">
-				<div class="col">
+			<div class="row mt-3">
+				<div class="col mt-5">
 					<table class="table">
 					  <thead>
 					    <tr>
@@ -30,15 +30,14 @@
 					  <tbody>
 					  	<c:forEach var="estudiante" items="${estudiantes}">
 						    <tr>
-						      <td><c:out value="${estudiante.id}"/></td>
+						   	  <td><c:out value="${estudiante.id}"/></td>
 						      <td><c:out value="${estudiante.nombre}"/></td>
 						      <td><c:out value="${estudiante.apellido}"/></td>
 						      <td><c:out value="${estudiante.run}"/></td>
 						      <td><c:out value="${estudiante.genero}"/></td>
 						      <td><c:out value="${estudiante.fono}"/></td>
-						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/orden?seleccion=editar&amp;id=${estudiante.id}">Consultar</a></td>
-						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/orden?seleccion=editar&amp;id=${estudiante.id}">Agregar Nota</a></td>
-						      <td></td>
+						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/estudiante?seleccion=ver&amp;id=${estudiante.id}">Consultar</a></td>
+						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/calificacion?seleccion=agregar&amp;id=${estudiante.id}">Agregar Nota</a></td>
 						    </tr>
 					    </c:forEach>
 					  </tbody>
@@ -47,6 +46,5 @@
 			</div>
 		</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 </body>
 </html>

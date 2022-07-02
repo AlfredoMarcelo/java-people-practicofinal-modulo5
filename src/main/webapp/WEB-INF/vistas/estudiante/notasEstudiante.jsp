@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +9,35 @@
 <body>
 	<%@ include file="/WEB-INF/vistas/componentes/navbar.jsp" %>
 		<div class="container">
-			<div class="row">
-				<div class="col">
+			<div class="row mt-3">
+				<div class="col mt-5">
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">Id</th>
+					      <th scope="col">Nombre</th>
+					      <th scope="col">Apellido</th>
+					      <th scope="col">Asignatura</th>
+					      <th scope="col">Nota</th>
+					      <th scope="col">N° Evaluacion</th>
+					      <th scope="col">Modificar</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<c:forEach var="estudiante" items="${estudiantes}">
+						    <tr>
+						      <td><c:out value="${estudiante.id}"/></td>
+						      <td><c:out value="${estudiante.nombre}"/></td>
+						      <td><c:out value="${estudiante.apellido}"/></td>
+						      <td><c:out value="${estudiante.asignatura}"/></td>
+						      <td><c:out value="${estudiante.nota}"/></td>
+						      <td><c:out value="${estudiante.evaluacion}"/></td>
+						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/estudiante?seleccion=ver&amp;id=${estudiante.id}">Consultar</a></td>
+						    </tr>
+					    </c:forEach>
+					  </tbody>
+					</table>
+				
 				</div>
 			</div>
 		</div>

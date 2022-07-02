@@ -13,6 +13,6 @@ public interface EstudianteDAO {
 	public Estudiante findByIdEstudiante(int id) throws SQLException, NamingException;
 	public void crearEstudiante(Estudiante estudiante) throws SQLException, NamingException;
 	public void editarEstudiante(Estudiante estudiante) throws SQLException, NamingException;
-	public void borrarAsignatura(int id) throws SQLException, NamingException;
+	public void borrarEstudiante(int id) throws SQLException, NamingException;
 	
 }

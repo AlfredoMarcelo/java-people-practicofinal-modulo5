@@ -17,7 +17,7 @@ public class EstudianteDAOImp implements EstudianteDAO{
 	@Override
 	public List<Estudiante> findAllEstudiantes() throws SQLException, NamingException {
 		try(
-				Connection conexion = DbUtils.getCoenxion();
+				Connection conexion = DbUtils.getConexion();
 				Statement declaracion = conexion.createStatement();
 			){
 			ResultSet rs = declaracion.executeQuery("SELECT * FROM estudiantes");
@@ -37,16 +37,33 @@ public class EstudianteDAOImp implements EstudianteDAO{
 	}
 
 	@Override
-	public Estudiante findByIdEstudiante(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Estudiante findByIdEstudiante(int estudianteId) throws SQLException, NamingException {
+		String sql = "SELECT * FROM estudiantes WHERE id = ?";
+		try (
+				Connection conexion = DbUtils.getConexion();
+				PreparedStatement declaracion = conexion.prepareStatement(sql);
+			) {
+				declaracion.setInt(1, estudianteId);
+				ResultSet rs = declaracion.executeQuery();
+				if(rs.next()) {
+					int id = rs.getInt("id");
+					String nombre = rs.getString("nombre");
+					String apellido = rs.getString("apellido");
+					String run = rs.getString("run");
+					String genero = rs.getString("genero");
+					String fono = rs.getString("fono");
+					return new Estudiante(id, nombre, apellido, run, genero, fono);
+				} else {					
+					return null;
+				}
+		}
 	}
 
 	@Override
 	public void crearEstudiante(Estudiante estudiante) throws SQLException, NamingException {
 		String sql = "INSERT INTO estudiantes(nombre, apellido, run, genero, fono) VALUES (?, ?, ?, ?, ?)";
 		try (
-				Connection conexion = DbUtils.getCoenxion();
+				Connection conexion = DbUtils.getConexion();
 				PreparedStatement declaracion = conexion.prepareStatement(sql);
 			) {
 				declaracion.setString(1, estudiante.getNombre());
@@ -59,15 +76,11 @@ public class EstudianteDAOImp implements EstudianteDAO{
 	}
 
 	@Override
-	public void editarEstudiante(Estudiante estudiante) {
-		// TODO Auto-generated method stub
-		
+	public void editarEstudiante(Estudiante estudiante) {	
 	}
 
 	@Override
-	public void borrarAsignatura(int id) {
-		// TODO Auto-generated method stub
-		
+	public void borrarEstudiante(int id) {
 	}
 
 }

@@ -11,7 +11,8 @@
 	<h1>Java people inicio</h1>
 	<div class="container">
 		<div class="row mt-5">
-			<div class="col">
+			<div class="col mt-5">
+				<p class="h3 text-center">Formulario Crear Estudiante</p>
 				<form class="row g-3" action="/java-people/estudiante" method="POST">
 					<input type="hidden" name="id">
 				  <div class="col-md-4">
@@ -39,19 +40,22 @@
 				    <input type="text" class="form-control" id="fono" name="fono">
 				  </div>
 				  <div class="col-12">
-				    <button type="submit" class="btn btn-primary">Agregar</button>
+				    <button type="submit" class="btn btn-success">Agregar</button>
 				  </div>
 				</form>
-				<form class="row g-3" action="/java-people/asignatura" method="POST">
-					<input type="hidden" name="id">
-				  <div class="col-md-4">
-				    <label for="nombre" class="form-label">Nombre: </label>
-				    <input type="text" class="form-control" id="nombre" name="nombre">
-				  </div>
-				  <div class="col-12">
-				    <button type="submit" class="btn btn-primary">Agregar</button>
-				  </div>
-				</form>
+				<div class="col mt-4">
+					<p class="h3 text-center">Formulario Crear Carrera</p>
+					<form class="row g-3" action="/java-people/asignatura" method="POST">
+						<input type="hidden" name="id">
+					  <div class="col-md-4">
+					    <label for="nombre" class="form-label">Nombre: </label>
+					    <input type="text" class="form-control" id="nombre" name="nombre">
+					  </div>
+					  <div class="col-12">
+					    <button type="submit" class="btn btn-success">Agregar</button>
+					  </div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

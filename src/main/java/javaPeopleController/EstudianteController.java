@@ -47,6 +47,7 @@ public class EstudianteController extends HttpServlet {
 				response.sendError(500);
 			}
 			break;
+
 			default:
 				response.sendError(404);
 		}
@@ -57,7 +58,6 @@ public class EstudianteController extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		// TODO Auto-generated method stub
 		super.init();
 		this.estudianteDAO = new EstudianteDAOImp();
 	}
