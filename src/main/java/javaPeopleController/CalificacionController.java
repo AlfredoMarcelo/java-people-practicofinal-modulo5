@@ -5,36 +5,81 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javaPeopleDao.AsignaturaDAO;
+import javaPeopleDao.AsignaturaDAOImp;
+import javaPeopleDao.CalificacionDAO;
+import javaPeopleDao.CalificacionDAOImp;
+import javaPeopleDao.EstudianteDAO;
+import javaPeopleDao.EstudianteDAOImp;
+import javaPeopleModel.Asignatura;
+import javaPeopleModel.Estudiante;
 
-/**
- * Servlet implementation class CalificacionController
- */
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.naming.NamingException;
+
+
 public class CalificacionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CalificacionController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private EstudianteDAO estudianteDAO;
+	private CalificacionDAO calificacionDAO;
+	private AsignaturaDAO asignaturaDAO;
+	
+	
+    @Override
+	public void init() throws ServletException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		super.init();
+		this.calificacionDAO = new CalificacionDAOImp();
+		this.estudianteDAO = new EstudianteDAOImp();
+		this.asignaturaDAO = new AsignaturaDAOImp();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
+	public CalificacionController() {
+        super();
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	String seleccion = request.getParameter("seleccion");
+	int estudianteId = Integer.parseInt(request.getParameter("id"));
+	String vistaJSP = "";
+	
+	switch(seleccion) {
+	case "agregar":
+		vistaJSP = "/WEB-INF/vistas/calificacion/formularioCalificacion.jsp";
+		Estudiante estudiante = null;
+		List<Asignatura> asignaturas = null;
+		
+		try {
+			estudiante = estudianteDAO.findByIdEstudiante(estudianteId);
+			asignaturas = asignaturaDAO.findAllAsignaturas();
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+			response.sendError(500);
+			return;
+		}
+		request.setAttribute("estudiante", estudiante);
+		request.setAttribute("asignaturas", asignaturas);
+		request
+			.getRequestDispatcher(vistaJSP)
+			.forward(request, response)
+			;
+		break;
+	
+	
+	}
+	
+	
+	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	
 	}
 
 }

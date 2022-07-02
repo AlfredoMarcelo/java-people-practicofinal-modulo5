@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -14,9 +16,23 @@ import javaPeopleModel.Asignatura;
 public class AsignaturaDAOImp implements AsignaturaDAO{
 
 	@Override
-	public List<Asignatura> findAllAsignaturas() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Asignatura> findAllAsignaturas() throws SQLException, NamingException {
+		String sql = "SELECT * FROM asignaturas";
+		try(
+				Connection conexion = DbUtils.getConexion();
+				Statement declaracion = conexion.createStatement();
+			){
+				ResultSet rs = declaracion.executeQuery(sql);
+				List<Asignatura> asignaturas = new ArrayList<>();
+				while(rs.next()) {
+					int id = rs.getInt("id");
+					String nombre = rs.getString("nombre");
+					Asignatura asignatura = new Asignatura(id, nombre);
+					asignaturas.add(asignatura);
+				}
+				return asignaturas;
+		}
+		
 	}
 
 	@Override
