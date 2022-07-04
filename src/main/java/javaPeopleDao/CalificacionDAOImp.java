@@ -13,6 +13,18 @@ import javaPeopleModel.Calificacion;
 import javaPeopleModel.Estudiante;
 
 public class CalificacionDAOImp implements CalificacionDAO {
+	
+	private EstudianteDAO estudianteDAO;
+	private AsignaturaDAO asignaturaDAO;
+	
+	
+	
+	//contructor
+	public CalificacionDAOImp(EstudianteDAO estudianteDAO, AsignaturaDAO asignaturaDAO) {
+		super();
+		this.estudianteDAO = estudianteDAO;
+		this.asignaturaDAO = asignaturaDAO;
+	}
 
 	@Override
 	public List<Calificacion> findAllCalificaciones() {
@@ -56,7 +68,7 @@ public class CalificacionDAOImp implements CalificacionDAO {
 
 	@Override
 	public Calificacion findCalificacionByIdEstudiante(int estudianteId) throws SQLException, NamingException {
-		String sql = "SELECT nota, evaluacion FROM ordenes WHERE estudiante_id = ?";
+		String sql = "SELECT * FROM calificaciones WHERE estudiante_id = ?";
 		try(
 				Connection conexion = DbUtils.getConexion();
 				PreparedStatement declaracion = conexion.prepareStatement(sql);
@@ -65,8 +77,10 @@ public class CalificacionDAOImp implements CalificacionDAO {
 			ResultSet rs = declaracion.executeQuery();
 			if(rs.next()) {
 				int id = rs.getInt("id");
-				Estudiante estudiante = (Estudiante)rs.getObject("estudiante_id");
-				Asignatura asignatura = (Asignatura)rs.getObject("asignatura_id");
+				int idEstudiante = rs.getInt("estudiante_id");
+				int idAsignatura = rs.getInt("asignatura_id");
+				Estudiante estudiante = estudianteDAO.findByIdEstudiante(idEstudiante);
+				Asignatura asignatura = asignaturaDAO.findAsignaturaById(idAsignatura);
 				float nota = rs.getFloat("nota");
 				int evaluacion = rs.getInt("evaluacion");
 				return new Calificacion(id, estudiante, asignatura, nota, evaluacion);

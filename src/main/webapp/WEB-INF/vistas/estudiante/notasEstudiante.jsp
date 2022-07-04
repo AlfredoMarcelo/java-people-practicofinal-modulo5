@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,20 +27,17 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-					  	<c:forEach var="estudiante" items="${estudiantes}">
 						    <tr>
-						      <td><c:out value="${estudiante.id}"/></td>
-						      <td><c:out value="${estudiante.nombre}"/></td>
-						      <td><c:out value="${estudiante.apellido}"/></td>
-						      <td><c:out value="${estudiante.asignatura}"/></td>
-						      <td><c:out value="${estudiante.nota}"/></td>
-						      <td><c:out value="${estudiante.evaluacion}"/></td>
-						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/estudiante?seleccion=ver&amp;id=${estudiante.id}">Consultar</a></td>
+						      <td><c:out value="${calificacion.id}"/></td>
+						      <td><c:out value="${calificacion.estudiante.nombre}"/></td>
+						      <td><c:out value="${calificacion.estudiante.apellido}"/></td>
+						      <td><c:out value="${calificacion.asignatura.nombre}"/></td>
+						      <td><c:out value="${calificacion.nota}"/></td>
+						      <td><c:out value="${calificacion.evaluacion}"/></td>
+						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/estudiante?seleccion=ver&amp;id=${calificacion.estudiante.id}">Consultar</a></td>
 						    </tr>
-					    </c:forEach>
 					  </tbody>
 					</table>
-				
 				</div>
 			</div>
 		</div>

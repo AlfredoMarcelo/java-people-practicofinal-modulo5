@@ -34,9 +34,9 @@ public class CalificacionController extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		this.calificacionDAO = new CalificacionDAOImp();
 		this.estudianteDAO = new EstudianteDAOImp();
 		this.asignaturaDAO = new AsignaturaDAOImp();
+		this.calificacionDAO = new CalificacionDAOImp( this.estudianteDAO, this.asignaturaDAO );
 	}
 
 
@@ -72,21 +72,16 @@ public class CalificacionController extends HttpServlet {
 			;
 		break;
 	case "consultarPorId":
-		Estudiante estudianteObj = null;
-		Asignatura asignaturaObj = null;
+		Calificacion calificacion = null;
 		try {
-			Calificacion calificacion = calificacionDAO.findCalificacionByIdEstudiante(estudianteId);
-			estudianteObj = estudianteDAO.findByIdEstudiante(calificacion.getEstudiante().getId());
-			asignaturaObj = asignaturaDAO.findAsignaturaById(calificacion.getAsignatura().getId());
-			
+			calificacion = calificacionDAO.findCalificacionByIdEstudiante(estudianteId);
 			request.setAttribute("calificacion", calificacion);
-			request.setAttribute("estudiante", estudianteObj);
-			request.setAttribute("asignatura", asignaturaObj);
-			vistaJSP = "/WEB-INF/vistas/calificacion/notasEstudiante.jsp";
+			vistaJSP = "/WEB-INF/vistas/estudiante/notasEstudiante.jsp";
 			request
-				.getRequestDispatcher(vistaJSP)
-				.forward(request, response)
+			.getRequestDispatcher(vistaJSP)
+			.forward(request, response)
 			;
+			
 		} catch (SQLException | NamingException e) {
 			e.printStackTrace();
 			response.sendError(500);
