@@ -12,6 +12,7 @@ import javaPeopleDao.CalificacionDAOImp;
 import javaPeopleDao.EstudianteDAO;
 import javaPeopleDao.EstudianteDAOImp;
 import javaPeopleModel.Asignatura;
+import javaPeopleModel.Calificacion;
 import javaPeopleModel.Estudiante;
 
 import java.io.IOException;
@@ -70,16 +71,78 @@ public class CalificacionController extends HttpServlet {
 			.forward(request, response)
 			;
 		break;
-	
-	
+	case "consultarPorId":
+		Estudiante estudianteObj = null;
+		Asignatura asignaturaObj = null;
+		try {
+			Calificacion calificacion = calificacionDAO.findCalificacionByIdEstudiante(estudianteId);
+			estudianteObj = estudianteDAO.findByIdEstudiante(calificacion.getEstudiante().getId());
+			asignaturaObj = asignaturaDAO.findAsignaturaById(calificacion.getAsignatura().getId());
+			
+			request.setAttribute("calificacion", calificacion);
+			request.setAttribute("estudiante", estudianteObj);
+			request.setAttribute("asignatura", asignaturaObj);
+			vistaJSP = "/WEB-INF/vistas/calificacion/notasEstudiante.jsp";
+			request
+				.getRequestDispatcher(vistaJSP)
+				.forward(request, response)
+			;
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+			response.sendError(500);
+		}
+		break;
 	}
-	
-	
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		int id = 0;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e){
+			System.err.println("todo ok");
+		}
+		
+		
+		Estudiante estudiante = null;
+		Asignatura asignatura = null;
+		float nota = Float.parseFloat(request.getParameter("nota"));
+		int evaluacion = Integer.parseInt(request.getParameter("evaluacion"));
+		try {
+			int estudianteId = Integer.parseInt(request.getParameter("estudianteId"));
+			int asignaturaId = Integer.parseInt(request.getParameter("asignaturaId"));
+			estudiante = estudianteDAO.findByIdEstudiante(estudianteId);
+			asignatura = asignaturaDAO.findAsignaturaById(asignaturaId);
+		} catch (SQLException | NamingException e) {
+			e.printStackTrace();
+			response.sendError(500);
+		}
+		
+		if(id == 0) {
+			Calificacion nuevaCalificacion = new Calificacion(estudiante, asignatura, nota, evaluacion);
+			try {
+				calificacionDAO.crearCalificacion(nuevaCalificacion);
+				response.sendRedirect("/java-people/estudiante?seleccion=listar");
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+		} else {
+			Calificacion editarCalificacion = new Calificacion(id, estudiante, asignatura, nota, evaluacion);
+			try {
+				calificacionDAO.editarCalificacion(editarCalificacion);
+				response.sendRedirect("/java-people/estudiante?seleccion=listar");
+			} catch (SQLException | NamingException e) {
+				e.printStackTrace();
+				response.sendError(500);
+			}
+		}
+		
+
+		
+		
+		
 	}
 
 }

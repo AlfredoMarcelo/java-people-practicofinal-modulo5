@@ -5,14 +5,14 @@ public class Calificacion {
 	private int id;
 	private Estudiante estudiante;
 	private Asignatura asignatura;
-	private double nota;
+	private float nota;
 	private int evaluacion;
 	
 	public Calificacion() {
 		super();
 	}
 
-	public Calificacion(Estudiante estudiante, Asignatura asignatura, double nota, int evaluacion) {
+	public Calificacion(Estudiante estudiante, Asignatura asignatura, float nota, int evaluacion) {
 		super();
 		this.estudiante = estudiante;
 		this.asignatura = asignatura;
@@ -20,7 +20,7 @@ public class Calificacion {
 		this.evaluacion = evaluacion;
 	}
 
-	public Calificacion(int id, Estudiante estudiante, Asignatura asignatura, double nota, int evaluacion) {
+	public Calificacion(int id, Estudiante estudiante, Asignatura asignatura, float nota, int evaluacion) {
 		super();
 		this.id = id;
 		this.estudiante = estudiante;
@@ -53,11 +53,11 @@ public class Calificacion {
 		this.asignatura = asignatura;
 	}
 
-	public double getNota() {
+	public float getNota() {
 		return nota;
 	}
 
-	public void setNota(double nota) {
+	public void setNota(float nota) {
 		this.nota = nota;
 	}
 
@@ -68,6 +68,7 @@ public class Calificacion {
 	public void setEvaluacion(int evaluacion) {
 		this.evaluacion = evaluacion;
 	}
+
 	
 	
 	

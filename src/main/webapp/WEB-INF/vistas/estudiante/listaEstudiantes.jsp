@@ -36,7 +36,7 @@
 						      <td><c:out value="${estudiante.run}"/></td>
 						      <td><c:out value="${estudiante.genero}"/></td>
 						      <td><c:out value="${estudiante.fono}"/></td>
-						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/estudiante?seleccion=ver&amp;id=${estudiante.id}">Consultar</a></td>
+						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/calificacion?seleccion=consultarPorId&amp;id=${estudiante.id}">Consultar</a></td>
 						      <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/calificacion?seleccion=agregar&amp;id=${estudiante.id}">Agregar Nota</a></td>
 						    </tr>
 					    </c:forEach>

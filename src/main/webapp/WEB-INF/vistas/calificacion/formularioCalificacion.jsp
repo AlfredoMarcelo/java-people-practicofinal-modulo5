@@ -15,8 +15,9 @@
 			<div class="row mt-4">
 				<div class="col mt-5">
 					<p class="h3 text-center">Agregar nota de evaluación</p>
-					<form class="row g-3" action="/java-people/calificacion" method="POST">
+					<form class="row g-3" action="/java-people/calificacion" method="POST" >
 					<input type="hidden" name="id">
+					<input type="hidden" name="estudianteId" value="${estudiante.id}">
 				  <div class="col-md-6">
 				    <label for="nombre" class="form-label">Nombre: </label>
 				    <input type="text" class="form-control" id="nombre" name="nombre" value="${estudiante.nombre}">
@@ -27,7 +28,7 @@
 				  </div>
 				  <div class="col-md-4">
 				    <label for="nota" class="form-label">Nota: </label>
-				    <input type="text" class="form-control" id="nota" name="nota">
+				    <input type="text" class="form-control" id="nota" name="nota" >
 				  </div>
 				  
 				  <div class="col-md-4">
@@ -36,12 +37,12 @@
 				  </div>
 				  
 				  <div class="col-md-4">
-				    <label for="genero" class="form-label">Asignatura: </label>
-				    <select id="genero" class="form-select" name="genero">
+				    <label for="asignatura" class="form-label">Asignatura: </label>
+				    <select id="asignatura" class="form-select" name="asignaturaId">
 				      
 				      <c:forEach var="asignatura" items="${asignaturas}">
 		  				<c:choose>
-		  					<c:when test="${asignatura.id == estudiante.id}">
+		  					<c:when test="${asignatura.id == calificacion.asignatura.id}">
 		  						<option selected="selected" value="${asignatura.id}">${asignatura.nombre}</option>
 		  					</c:when>
 		  					<c:otherwise>
